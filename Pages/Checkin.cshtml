@@ -1,0 +1,86 @@
+@page
+@model assignmentapp.Pages.CheckInModel
+@{
+    ViewData["Title"] = "Bank Services Check - In";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank Services Check-In</title>
+    <link rel="stylesheet" href="~/css/checkin.css" />
+    <!-- Add your additional CSS files or styles here -->
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h2>Bank Services Check-In</h2>
+        </header>
+        <section>
+            <p>Welcome to our bank! Please select the service you need from the options below:</p>
+
+            <form method="post" class="check-in-form">
+                <div class="form-group">
+                    <label for="serviceType">Select Service Type:</label>
+                    <select id="serviceType" name="serviceType" class="form-control">
+                        <option value="deposit">Deposit</option>
+                        <option value="withdraw">Withdraw</option>
+                        <option value="transfer">Transfer</option>
+                        <!-- Add more service options as needed -->
+                    </select>
+                </div>
+                </br>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" onclick="printTicket()">Check-In</button>
+                </div>
+
+            </form>
+        </section>
+
+        <section class="services">
+            <h3>Available Services:</h3>
+            <ul>
+                <li><strong>Deposit:</strong> Make a deposit into your account.</li>
+                <li><strong>Withdraw:</strong> Withdraw cash from your account.</li>
+                <li><strong>Transfer:</strong> Transfer funds between accounts.</li>
+                <!-- Add more service descriptions as needed -->
+            </ul>
+        </section>
+
+    </div>
+
+    <script>
+        function printTicket() {
+            // Assume you have implemented the ticket printing logic here
+
+            // After printing the ticket, you may show a confirmation to the user
+            alert('Ticket printed successfully!');
+        }
+
+        function checkStatus() {
+            // Redirect to the waiting page with the selected service information
+            const serviceType = document.getElementById('serviceType').value;
+            const ticketNumber = getTicketNumber(); // You should replace this with the actual ticket number
+            const waitingTime = calculateWaitingTime(); // You should replace this with the actual waiting time calculation
+
+            // Redirect to the waiting page with query parameters
+            window.location.href = `/WaitingPage?serviceType=${serviceType}&ticketNumber=${ticketNumber}&waitingTime=${waitingTime}`;
+        }
+
+        function getTicketNumber() {
+            // Replace this with logic to retrieve the actual ticket number
+            return '123';
+        }
+
+        function calculateWaitingTime() {
+            // Replace this with logic to calculate the actual waiting time
+            return '30 minutes';
+        }
+    </script>
+</body></br></br></br></br></br>
+
+</html>

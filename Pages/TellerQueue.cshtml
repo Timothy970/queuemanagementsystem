@@ -1,0 +1,83 @@
+@page
+@model TellerQueueModel
+
+<h1>Customer Queue for Teller: @Model.Teller</h1>
+
+@if (Model.CustomerQueue.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Customer Number</th>
+                    <th>Check-In Time</th>
+                    <th>Serving Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model.CustomerQueue)
+                {
+                    <tr>
+                        <td>@customer.CustomerNumber</td>
+                        <td>@customer.CheckInTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        <td>@customer.ServingTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        <td>@customer.Status</td>
+                        <td>
+                            <button class="btn btn-success" onclick="finishCustomer('@customer.CustomerNumber')">Finish</button>
+                            <button class="btn btn-warning" onclick="markNoShow('@customer.CustomerNumber')">No Show</button>
+                            <button class="btn btn-info"
+                                onclick="transferToAnotherTeller('@customer.CustomerNumber')">Transfer</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p>No customers in the queue for this teller.</p>
+}
+
+@section scripts {
+
+    <script>
+        function finishCustomer(customerNumber) {
+            console.log('Finish customer called with number:', customerNumber);
+            performCustomerAction(customerNumber, 'Finish');
+        }
+
+        function markNoShow(customerNumber) {
+            console.log('Mark No Show called with number:', customerNumber);
+            performCustomerAction(customerNumber, 'NoShow');
+        }
+
+        function transferToAnotherTeller(customerNumber) {
+            console.log('Transfer customer called with number:', customerNumber);
+            performCustomerAction(customerNumber, 'Transfer');
+        }
+
+        function performCustomerAction(customerNumber, action) {
+            $.ajax({
+                url: '@Url.Page("/TellerQueue", pageHandler: "UpdateCustomerStatus")',
+                data: { customerNumber: customerNumber, action: action },
+                success: function () {
+                    alert('Action performed successfully.');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error performing action:', status, error);
+                    alert('Error performing action. Check console for details.');
+                }
+            });
+        }
+    </script>
+    <script>
+        function getNewTellerFromUser() {
+            var newTeller = prompt('Enter the new teller:');
+            return newTeller;
+        }
+    </script>
+}

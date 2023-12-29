@@ -1,0 +1,34 @@
+@page
+@model assignmentapp.Pages.ServicePointModel
+@{
+    ViewData["Title"] = "Service Point";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Service Point</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h2>Service Point</h2>
+        </header>
+
+
+    </div>
+    <a asp-page="/TellerQueue" asp-route-teller="Teller01">View Queue for Teller 01</a>
+    <a asp-page="/TellerQueue" asp-route-teller="Teller02">View Queue for Teller 02</a>
+    <a asp-page="/TellerQueue" asp-route-teller="Teller03">View Queue for Teller 03</a>
+
+    </div>
+
+
+</body>
+
+</html>

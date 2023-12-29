@@ -1,0 +1,7 @@
+C:\Users\Hp\assignmentapp\obj\Debug\net5.0\assignmentapp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hp\assignmentapp\obj\Debug\net5.0\assignmentapp.AssemblyInfoInputs.cache
+C:\Users\Hp\assignmentapp\obj\Debug\net5.0\assignmentapp.AssemblyInfo.cs
+C:\Users\Hp\assignmentapp\obj\Debug\net5.0\assignmentapp.csproj.CoreCompileInputs.cache
+C:\Users\Hp\assignmentapp\obj\Debug\net5.0\assignmentapp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Hp\assignmentapp\obj\Debug\net5.0\assignmentapp.RazorAssemblyInfo.cache
+C:\Users\Hp\assignmentapp\obj\Debug\net5.0\assignmentapp.RazorAssemblyInfo.cs

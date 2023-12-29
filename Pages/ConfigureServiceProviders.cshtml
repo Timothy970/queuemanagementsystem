@@ -1,0 +1,78 @@
+@page
+@model ConfigureServiceProvidersModel
+@{
+    ViewData["Title"] = "Create Service Provider";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="serviceProviderName">Service Provider Name:</label>
+        <input type="text" class="form-control" id="serviceProviderName" name="serviceProviderName" required>
+    </div>
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Account</button>
+</form>
+
+@if (Model.ExistingUsers.Any())
+{
+    <h2>Existing Service Providers</h2>
+    <ul>
+        @foreach (var user in Model.ExistingUsers)
+        {
+            <li>
+                @user.ServiceProviderName (Username: @user.Username)
+
+                @* <a asp-page="/ConfigureServiceProviders" asp-page-handler="ChangePassword"
+        asp-route-username="@user.Username"
+        class="btn btn-warning">Change
+        Password</a> *@
+                <a asp-page="/ConfigureServiceProviders" asp-page-handler="DeleteUser" asp-route-id="@user.Id"
+                    class="text-danger">Delete Service Provider</a>
+            </li>
+            <!-- Modal for changing password -->
+            <div class="modal fade" id="changePasswordModal-@user.Id" tabindex="-1" role="dialog"
+                aria-labelledby="changePasswordModalLabel-@user.Id" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changePasswordModalLabel-@user.Id">Change Password for
+                                @user.ServiceProviderName</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Form for changing password -->
+                            <form method="post" asp-page-handler="ChangePassword" asp-route-id="@user.Id">
+                                <div class="form-group">
+                                    <label for="currentPassword-@user.Id">Current Password:</label>
+                                    <input type="password" class="form-control" id="currentPassword-@user.Id"
+                                        name="CurrentPassword" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword-@user.Id">New Password:</label>
+                                    <input type="password" class="form-control" id="newPassword-@user.Id" name="NewPassword"
+                                        required>
+                                </div>
+                                <button type="submit" class="btn btn-warning">Change Password</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </ul>
+}
+else
+{
+    <p>No existing service providers.</p>
+}

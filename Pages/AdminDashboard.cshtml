@@ -1,0 +1,15 @@
+@page
+@model AdminDashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <ul>
+        <li><a asp-page="/AdminDashboard/ConfigureServicePoints">Configure Service Points</a></li></br>
+        <li><a asp-page="/ConfigureServiceProviders">Configure Service Providers</a></li></br>
+        <li><a asp-page="/AdminDashboard/GenerateReport">Generate Report</a></li>
+    </ul>
+</div>

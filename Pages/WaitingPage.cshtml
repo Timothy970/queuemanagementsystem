@@ -1,0 +1,54 @@
+@page "{customerNumber:int}"
+@model assignmentapp.Pages.WaitingPageModel
+@{
+    ViewData["Title"] = "Waiting Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waiting Page</title>
+    <link rel="stylesheet" href="~/css/waitingpage.css" />
+    <!-- Add your additional CSS files or styles here -->
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h2>Waiting Page</h2>
+        </header>
+        <section>
+            <p>Your turn has come! Please proceed to Service Point:</p>
+
+            <div class="details">
+                <div class="detail">
+                    <strong>Ticket Number:</strong>
+                    <span>@Model.Customer?.CustomerNumber</span>
+                </div>
+                <div class="detail">
+                    <strong>Service Type:</strong>
+                    <span>@Model.Customer?.ServiceType</span>
+                </div>
+                <div class="detail">
+                    <strong>Checking Time:</strong>
+                    <span>@Model.Customer?.CheckInTime</span>
+                </div>
+                <div class="detail">
+                    <strong>Serving Time:</strong>
+                    <span>@Model.Customer?.ServingTime</span>
+                </div>
+                <div class="detail">
+                    <strong>Service Point:</strong>
+                    <span>@Model.Customer?.Teller</span>
+                </div>
+            </div>
+
+            <p>Thank you for choosing our bank. We look forward to serving you.</p>
+        </section>
+    </div>
+</body>
+
+</html>
